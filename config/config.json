@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "signature-generator-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/signatureGenerator/SignatureGeneratorWebPart.js",
+          "manifest": "./src/webparts/signatureGenerator/SignatureGeneratorWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SignatureGeneratorWebPartStrings": "lib/webparts/signatureGenerator/loc/{locale}.js"
+  }
+}

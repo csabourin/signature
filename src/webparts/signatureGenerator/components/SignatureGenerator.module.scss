@@ -1,0 +1,132 @@
+@import '~@fluentui/react/dist/sass/References.scss';
+
+.signatureGenerator {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  margin: 20px auto;
+  max-width: 760px;
+}
+
+.title {
+  font-weight: 400;
+}
+
+.instruction {
+  color: #d9d9d9;
+  line-height: 1.5;
+  padding-left: 16px;
+}
+
+.logo {
+  padding: 20px;
+  text-align: center;
+}
+
+.logo img {
+  height: auto;
+  max-width: 500px;
+  vertical-align: middle;
+}
+
+.form {
+  background: #003b4c;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.form label {
+  display: block;
+  margin: 0 0 5px 0;
+}
+
+.form input[type='text'],
+.form input[type='email'] {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+}
+
+.form input:focus {
+  background: #f7f6de;
+}
+
+.row {
+  display: block;
+}
+
+.row::after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.col {
+  box-sizing: border-box;
+  float: left;
+  padding: 0 20px;
+  width: 50%;
+}
+
+.checkboxRow input {
+  margin-right: 6px;
+  width: auto;
+}
+
+.preview {
+  overflow-x: auto;
+  padding: 0 20px;
+}
+
+.action {
+  background: #003b4c;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: #fff;
+  padding: 20px;
+}
+
+.copybutton {
+  background: #003b4c;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.copybutton:hover {
+  background: #fff;
+  color: #003b4c;
+}
+
+.success {
+  color: #fff;
+  float: right;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.successVisible {
+  opacity: 1;
+}
+
+.nomargin {
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .logo img {
+    max-width: 100%;
+  }
+
+  .col {
+    float: none;
+    width: 100%;
+  }
+}

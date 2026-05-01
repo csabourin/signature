@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=9">
+  <title>Email signature generator | Générateur de signatures pour les courriels</title>
+  <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/397680ba-3bf4-496b-b1aa-78afefc91ba6.css"/>
+  <link rel="stylesheet" href="css/app.css">
+  <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div id="app">
+    <div class="logo">
+      <img src="https://s3.amazonaws.com/ncc-ccn/signature/NCC_Expanded_Blue.png" alt="National Capital Commission - Commission de la capitale nationale" width="500" height="82">
+    </div>
+<!--     <p class="usechrome">
+      Please use Google Chrome for this app to work properly.
+      <br>
+      Veuillez utiliser Google Chrome afin que cette application fonctionne correctement.
+    </p> -->
+    <form>
+      <div class="row">
+        <div class="col">
+          <h2 class="title">Email signature<br>generator</h2>
+          <ol class="instruction">
+            <li>Fill in the fields below. (Your information updates automatically below)</li>
+            <li>Determine your language of preference.</li>
+            <li>Click the copy signature box at the bottom.</li>
+            <li>Paste into the signature box in your Outlook.</li>
+          </ol>
+        </div>
+        <div class="col">
+          <h2 class="title">Générateur de signatures<br>pour les courriels</h2>
+          <ol class="instruction">
+            <li>Remplissez les champs ci-dessous. (Vos renseignements se mettent automatiquement à jour ci-dessous)</li>
+            <li>Choisissez votre langue de préférence.</li>
+            <li>Cliquez sur le bouton pour copier la signature.</li>
+            <li>Collez le tout dans la fenêtre d’Outlook pour les signatures.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <p>
+            <label for="name">Name / Nom</label>
+            <input type="text" id="name" name="name" v-model="name" tabindex="1">
+          </p>
+          <p>
+            <label for="pronounEn">Pronoun(s) - English</label>
+            <input type="text" id="pronounEn" name="pronounEn" v-model="pronounEn" tabindex="3">
+          </p>
+          <p>
+            <label for="roleEn">Role - English</label>
+            <input type="text" id="roleEn" name="roleEn" v-model="roleEn" tabindex="3">
+          </p>
+          <p>
+            <label for="ext">Extension / Poste</label>
+            <input type="text" id="ext" name="ext" v-model="ext" tabindex="5">
+          </p>
+          <p>
+            <label for="cell">Cell / Cellulaire</label>
+            <input type="text" id="cell" name="cell" v-model="cell" tabindex="6">
+          </p>
+        </div>
+        <div class="col">
+          <p>
+            <label for="certification">Certification / Accréditation </label>
+            <input type="text" id="certification" name="certification" v-model="certification" tabindex="1">
+          </p>
+          <p>
+            <label for="pronounFr">Pronom(s) – Français</label>
+            <input type="text" id="pronounFr" name="pronounFr" v-model="pronounFr" tabindex="3">
+          </p>
+          <p>
+            <label for="roleFr">Rôle - Français</label>
+            <input type="text" id="roleFr" name="roleFr" v-model="roleFr" tabindex="4">
+          </p>
+          <p>
+            <label for="email">Email / Courriel</label>
+            <input type="email" id="email" name="email" v-model="email" tabindex="2">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p>
+            <label for="deviceName">Other device - Name / Autre appareil - Nom</label>
+            <input type="email" id="deviceName" name="deviceName" v-model="deviceName" tabindex="2">
+          </p>
+        </div>
+        <div class="col">
+          <p>
+            <label for="deviceNum">Other device - Number / Autre appareil - Numéro</label>
+            <input type="email" id="deviceNum" name="deviceNum" v-model="deviceNum" tabindex="2">
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p>
+            <label for="displayOrder">Display Order / Ordre d'affichage</label>
+            <input type="checkbox" id="displayOrder" name="displayOrder" v-model="displayOrder" tabindex="7"> Français en premier
+          </p>
+        </div>
+      </div>
+    </form>
+    <div class="preview">
+      <table id="sig" cellspacing="0" cellpadding="0" border="0" style="padding:20px 0;">
+        <tbody>
+          <tr style="vertical-align: top;">
+            <td style="padding-right: 15px;vertical-align: top;">
+              <img src="https://s3.amazonaws.com/ncc-ccn/signature/Ring.png" style="vertical-align:top;" width="70" height="70" alt="">
+            </td>
+            <td>
+              <table cellspacing="0" cellpadding="0" border="0" style="font-family: TimesNewRoman, 'Times New Roman', Times, serif;font-size: 13px;color: rgb(0,59,76);line-height: 1.25;">
+                <tbody>
+                  <tr>
+                    <td style="font-family: Helvetica, Arial, sans-serif;font-size: 17px; font-weight: 700;padding: 5px 0;letter-spacing: .5px;">{{ name }}
+                    
+                      <span v-if="certification" style="font-family: Times New Roman;font-size: 14px; font-weight: 400;">{{certification}}</span>
+                    </td>
+                  </tr>
+                  <tr v-if="pronounEn.length || pronounFr.length">
+                      <td v-if="displayOrder">Pronom(s): {{ pronounFr }} Pronoun(s): {{ pronounEn }} </td>
+                      <td v-else>Pronoun(s): {{ pronounEn }}  Pronom(s): {{ pronounFr }}</td>
+                  </tr>
+                  <tr>
+                    <td v-if="displayOrder">{{ roleFr }}<br>{{ roleEn }}</td>
+                    <td v-else>{{ roleEn }}<br>{{ roleFr }}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding-top: 5px;">
+                      <a :href="'mailto:' + email" style="color: rgb(0,59,76);text-decoration: none;">{{ email }}</a>
+                    </td>
+                  </tr>
+                  <tr v-if="ext.length">
+                    <td style="vertical-align: middle;">
+                      <img src="https://s3.amazonaws.com/ncc-ccn/signature/Phone32.png" alt="" style="vertical-align: middle;" width="14" height="14" align="middle"> <span>613-239-5678, ext. / poste</span> <span>{{ ext }}</span>
+                    </td>
+                  </tr>
+                  <tr v-if="cell.length">
+                    <td style="vertical-align: middle;">
+                      <img src="https://s3.amazonaws.com/ncc-ccn/signature/Cell32.png" alt="" style="vertical-align: middle;" width="14" height="14" align="middle"> <span>{{ cell }}</span>
+                    </td>
+                  </tr>
+                  <tr v-if="deviceName.length || deviceNum.length">
+                    <td style="vertical-align: middle;">
+                      <img src="https://s3.amazonaws.com/ncc-ccn/signature/Phone32.png" alt="" style="vertical-align: middle;" width="14" height="14" align="middle"> {{deviceName}} {{deviceNum}}
+                    </td>
+                  </tr>
+                  <tr><td style="padding: 5px 0;"><hr style="color: rgb(168,159,136);"></td></tr>
+                  <tr>
+                    <td v-if="displayOrder">
+                      <a href="http://www.ccn-ncc.gc.ca/" style="color: rgb(0,59,76);text-decoration: none;">Commission de la capitale nationale</a><br>
+                      <a href="http://www.ncc-ccn.gc.ca/" style="color: rgb(0,59,76);text-decoration: none;">National Capital Commission</a>
+                    </td>
+                    <td v-else>
+                      <a href="http://www.ncc-ccn.gc.ca/" style="color: rgb(0,59,76);text-decoration: none;">National Capital Commission</a><br>
+                      <a href="http://www.ccn-ncc.gc.ca/" style="color: rgb(0,59,76);text-decoration: none;">Commission de la capitale nationale</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-top:10px;">
+                      <img src="https://s3.amazonaws.com/ncc-ccn/signature/Canada.png" width="70" height="17" alt="">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="action">
+      <p id="success" class="success nomargin">
+        Your signature has been copied to the clipboard.<br>
+        Votre signature a été copiée dans le presse-papiers.
+      </p>
+      <p class="nomargin">
+        <button class="copybutton" data-clipboard-target="#sig">Copy signature / Copier la signature</button>
+      </p>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
