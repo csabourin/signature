@@ -120,25 +120,35 @@ const SignatureGenerator: React.FC<ISignatureGeneratorProps> = (props) => {
           <div className={styles.col}>
             <ol className={styles.instruction}>
               <li>
-                Fill in the fields below. (Your information updates
-                automatically below)
+                Complete the fields below. Some of your information (name,
+                role) will be filled automatically.
               </li>
-              <li>Determine your language of preference.</li>
-              <li>Click the copy signature box at the bottom.</li>
-              <li>Paste into the signature box in your Outlook.</li>
+              <li>Carefully check the accuracy of the information.</li>
+              <li>Choose your display order. The default is English first.</li>
+              <li>Click the copy signature button at the bottom.</li>
+              <li>
+                Paste into the signatures field in Outlook (File &gt; Options
+                &gt; Mail &gt; Signatures).
+              </li>
             </ol>
           </div>
           <div className={styles.col}>
             <ol className={styles.instruction}>
               <li>
-                Remplissez les champs ci-dessous. (Vos renseignements se
-                mettent automatiquement à jour ci-dessous)
+                Remplissez les champs ci-dessous. Certains de vos
+                renseignements (nom, poste) seront remplis automatiquement.
               </li>
-              <li>Choisissez votre langue de préférence.</li>
-              <li>Cliquez sur le bouton pour copier la signature.</li>
               <li>
-                Collez le tout dans la fenêtre d&apos;Outlook pour les
-                signatures.
+                Vérifiez attentivement l&apos;exactitude des renseignements.
+              </li>
+              <li>
+                Choisissez votre ordre d&apos;affichage. Par défaut,
+                l&apos;anglais apparaît en premier.
+              </li>
+              <li>Cliquez sur le bouton Copier la signature au bas de la page.</li>
+              <li>
+                Collez la signature dans le champ Signatures d&apos;Outlook
+                (Fichier &gt; Options &gt; Courrier &gt; Signatures).
               </li>
             </ol>
           </div>
