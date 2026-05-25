@@ -1,77 +1,102 @@
-# signature
+# Signature
 
-## Summary
+SharePoint Framework web part for generating bilingual National Capital
+Commission email signatures. Users complete or review their profile details,
+preview the signature, choose the English/French display order, and copy the
+HTML signature for use in Outlook.
 
-Short summary on functionality and used technologies.
+## Overview
 
-[picture of the solution in action, if possible]
+The main implementation is a React-based SPFx web part:
 
-## Used SharePoint Framework Version
+- Web part: `src/webparts/signatureGenerator/SignatureGeneratorWebPart.ts`
+- React component: `src/webparts/signatureGenerator/components/SignatureGenerator.tsx`
+- Assets: `src/webparts/signatureGenerator/assets`
+- Legacy static generator: `signature/generator.html`
 
-![version](https://img.shields.io/badge/version-1.22.2-green.svg)
+The web part uses Microsoft Graph `/me` to prefill user information where
+available, including display name, email address, job title, mobile phone,
+business phone extension, and `extensionAttribute1` for the French role.
 
-## Applies to
+## Technology
 
-- [SharePoint Framework](https://aka.ms/spfx)
-- [Microsoft 365 tenant](https://docs.microsoft.com/sharepoint/dev/spfx/set-up-your-developer-tenant)
-
-> Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/o365devprogram)
+- SharePoint Framework `1.22.2`
+- React `17`
+- Fluent UI React `8`
+- TypeScript `5.8`
+- Heft build tooling
 
 ## Prerequisites
 
-> Any special pre-requisites?
+- Node.js `>=22.14.0 <23.0.0`
+- npm
+- Access to a Microsoft 365 tenant with SharePoint
+- A SharePoint App Catalog for deployment
 
-## Solution
+## Install
 
-| Solution    | Author(s)                                               |
-| ----------- | ------------------------------------------------------- |
-| folder name | Author details (name, company, twitter alias with link) |
+```bash
+npm install
+```
 
-## Version history
+## Run Locally
 
-| Version | Date             | Comments        |
-| ------- | ---------------- | --------------- |
-| 1.1     | March 10, 2021   | Update comment  |
-| 1.0     | January 29, 2021 | Initial release |
+```bash
+npm run start
+```
 
-## Disclaimer
+The local workbench is configured in `config/serve.json` and runs on
+`https://localhost:4321`.
 
-**THIS CODE IS PROVIDED _AS IS_ WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
+## Build
 
----
+```bash
+npm run build
+```
 
-## Minimal Path to Awesome
+This runs a production Heft test/build and packages the SharePoint solution.
+The generated package path is:
 
-- Clone this repository
-- Ensure that you are at the solution folder
-- in the command-line run:
-  - `npm install -g @rushstack/heft`
-  - `npm install`
-  - `heft start`
+```text
+sharepoint/solution/signature.sppkg
+```
 
-> Include any additional steps as needed.
+## Scripts
 
-Other build commands can be listed using `heft --help`.
+```bash
+npm run start
+npm run build
+npm run clean
+npm run eject-webpack
+```
 
-## Features
+## Microsoft Graph Permission
 
-Description of the extension that expands upon high-level summary above.
+The package requests the following delegated Microsoft Graph permission:
 
-This extension illustrates the following concepts:
+```text
+User.Read
+```
 
-- topic 1
-- topic 2
-- topic 3
+After deploying the package, approve the API permission request from the
+SharePoint admin center if the tenant has not already granted it.
 
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
+## Deployment
 
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
+1. Run `npm run build`.
+2. Upload `sharepoint/solution/signature.sppkg` to the tenant App Catalog.
+3. Deploy the solution.
+4. Approve the `User.Read` API permission request if required.
+5. Add the **Email Signature Generator** web part to a SharePoint page.
 
-## References
+The solution is configured with `skipFeatureDeployment: true`, so it can be
+available tenant-wide after deployment.
 
-- [Getting started with SharePoint Framework](https://docs.microsoft.com/sharepoint/dev/spfx/set-up-your-developer-tenant)
-- [Building for Microsoft teams](https://docs.microsoft.com/sharepoint/dev/spfx/build-for-teams-overview)
-- [Use Microsoft Graph in your solution](https://docs.microsoft.com/sharepoint/dev/spfx/web-parts/get-started/using-microsoft-graph-apis)
-- [Publish SharePoint Framework applications to the Marketplace](https://docs.microsoft.com/sharepoint/dev/spfx/publish-to-marketplace-overview)
-- [Microsoft 365 Patterns and Practices](https://aka.ms/m365pnp) - Guidance, tooling, samples and open-source controls for your Microsoft 365 development
-- [Heft Documentation](https://heft.rushstack.io/)
+## Notes
+
+- Signature copy uses the Clipboard API and writes both HTML and plain text
+  when supported by the browser.
+- If Microsoft Graph data cannot be loaded, the web part falls back to the
+  current SharePoint page context user name and email.
+- The `signature/` folder contains an older standalone HTML/Vue generator and
+  supporting assets.
