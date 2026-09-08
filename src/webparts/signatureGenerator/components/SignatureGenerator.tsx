@@ -439,7 +439,7 @@ const SignatureGenerator: React.FC<ISignatureGeneratorProps> = (props) => {
                         {formData.displayOrder ? (
                           <>
                             <a
-                              href="http://www.ccn-ncc.gc.ca/"
+                              href="https://ccn-ncc.gc.ca/"
                               style={{
                                 color: "rgb(0,59,76)",
                                 textDecoration: "none",
@@ -449,7 +449,7 @@ const SignatureGenerator: React.FC<ISignatureGeneratorProps> = (props) => {
                             </a>
                             <br />
                             <a
-                              href="http://www.ncc-ccn.gc.ca/"
+                              href="https://ncc-ccn.gc.ca/"
                               style={{
                                 color: "rgb(0,59,76)",
                                 textDecoration: "none",
@@ -461,7 +461,7 @@ const SignatureGenerator: React.FC<ISignatureGeneratorProps> = (props) => {
                         ) : (
                           <>
                             <a
-                              href="http://www.ncc-ccn.gc.ca/"
+                              href="https://ncc-ccn.gc.ca/"
                               style={{
                                 color: "rgb(0,59,76)",
                                 textDecoration: "none",
@@ -471,7 +471,7 @@ const SignatureGenerator: React.FC<ISignatureGeneratorProps> = (props) => {
                             </a>
                             <br />
                             <a
-                              href="http://www.ccn-ncc.gc.ca/"
+                              href="https://ccn-ncc.gc.ca/"
                               style={{
                                 color: "rgb(0,59,76)",
                                 textDecoration: "none",
